@@ -1,0 +1,211 @@
+.layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--color-bg-base);
+}
+
+.sidebar {
+  width: 240px;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme='light'] .sidebar {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.sidebarClosed {
+  width: 80px;
+}
+
+.sidebarClosed .logo {
+  display: none;
+}
+
+.sidebarClosed .sidebarHeader {
+  justify-content: center;
+}
+
+.sidebarHeader {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+
+.navMenu {
+  flex: 1;
+  padding: var(--space-4) var(--space-3);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-1);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-medium);
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.navItem:hover {
+  background-color: var(--color-bg-surface-hover);
+  color: var(--color-text-primary);
+  transform: translateX(4px);
+}
+
+.navItem.active {
+  background-color: var(--color-bg-surface-hover);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.navIcon {
+  margin-right: var(--space-3);
+  display: flex;
+}
+
+.sidebarFooter {
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.userProfile {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: var(--space-3);
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+}
+
+.userProfile:hover {
+  background-color: var(--color-bg-surface-hover);
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userName {
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.userRole {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+    height: 100%;
+    z-index: 50;
+    box-shadow: var(--shadow-lg);
+  }
+  .sidebarClosed {
+    transform: translateX(-100%);
+    width: 240px; /* retain width but move offscreen */
+  }
+  .topbarActions {
+    display: none; /* Simplify topbar on very small screens */
+  }
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.topbar {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-8);
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+[data-theme='light'] .topbar {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.searchInput {
+  width: 300px;
+  background-color: var(--color-bg-base);
+}
+
+.sidebarToggle {
+  margin-right: var(--space-4);
+}
+
+.topbarActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.motionWrapper {
+  min-height: 100%;
+}
+
+.actionBtn {
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.actionBtn:hover {
+  background-color: var(--color-bg-surface-hover);
+  color: var(--color-text-primary);
+}
+
+.contentArea {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-8);
+  background-color: var(--color-bg-base);
+}

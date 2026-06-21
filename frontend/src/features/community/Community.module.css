@@ -1,0 +1,232 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: var(--space-6);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  background-color: var(--color-bg-surface);
+  padding: var(--space-6) var(--space-8);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: var(--space-2);
+}
+
+.subtitle {
+  color: var(--color-text-secondary);
+}
+
+.mainLayout {
+  display: flex;
+  gap: var(--space-6);
+  flex: 1;
+  min-height: 0;
+}
+
+.sidebar {
+  width: 320px;
+  background-color: var(--color-bg-surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.tab:hover {
+  background-color: var(--color-bg-surface-hover);
+}
+
+.activeTab {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.listContainer {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4);
+}
+
+.sectionTitle {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-3);
+  letter-spacing: 1px;
+}
+
+.connectionItem {
+  display: flex;
+  align-items: center;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  margin-bottom: var(--space-2);
+  transition: background-color 0.2s;
+}
+
+.connectionItem:hover {
+  background-color: var(--color-bg-surface-hover);
+}
+
+.activeChat {
+  background-color: var(--color-primary-light);
+}
+
+.connectionInfo {
+  flex: 1;
+  margin-left: var(--space-3);
+  overflow: hidden;
+}
+
+.connectionName {
+  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.connectionRole {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chatArea {
+  flex: 1;
+  background-color: var(--color-bg-surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chatHeader {
+  display: flex;
+  align-items: center;
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg-base);
+}
+
+.chatHeader > div:last-child {
+  margin-left: var(--space-3);
+}
+
+.chatName {
+  font-weight: var(--font-weight-bold);
+}
+
+.chatRole {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.chatMessages {
+  flex: 1;
+  padding: var(--space-6);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  background-color: var(--color-bg-base);
+}
+
+.messageWrapper {
+  display: flex;
+}
+
+.messageMine {
+  justify-content: flex-end;
+}
+
+.messageTheirs {
+  justify-content: flex-start;
+}
+
+.messageBubble {
+  max-width: 70%;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.messageMine .messageBubble {
+  background-color: var(--color-primary);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.messageTheirs .messageBubble {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  border-bottom-left-radius: 4px;
+}
+
+.chatInputArea {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg-surface);
+}
+
+.emptyChat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .mainLayout {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    height: 300px;
+    flex-shrink: 0;
+  }
+  .chatArea {
+    min-height: 500px;
+  }
+  .header {
+    padding: var(--space-4);
+  }
+}

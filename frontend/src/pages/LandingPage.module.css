@@ -1,0 +1,221 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-bg-base);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4) var(--space-8);
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg-surface);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+
+.navLinks {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.hero {
+  padding: var(--space-16) var(--space-8);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-12);
+  background: linear-gradient(180deg, var(--color-bg-surface) 0%, var(--color-bg-base) 100%);
+}
+
+.heroContent {
+  max-width: 800px;
+}
+
+.heroTitle {
+  font-size: 64px;
+  line-height: 1.1;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-6);
+  letter-spacing: -0.02em;
+}
+
+.highlight {
+  color: var(--color-primary);
+}
+
+.heroSubtitle {
+  font-size: 20px;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-8);
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+.ctaGroup {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.dashboardPreview {
+  width: 100%;
+  max-width: 1000px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--color-border);
+}
+
+.previewWindow {
+  background-color: var(--color-bg-surface);
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 16/9;
+}
+
+.previewHeader {
+  height: 40px;
+  background-color: var(--color-bg-surface-hover);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dots::before, .dots::after, .dots {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-text-tertiary);
+}
+.dots::before { background-color: var(--color-error); }
+.dots { background-color: var(--color-warning); }
+.dots::after { background-color: var(--color-success); }
+
+.previewBody {
+  padding: var(--space-8);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.skeletonBlock {
+  background-color: var(--color-bg-surface-hover);
+  border-radius: var(--radius-md);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.features {
+  padding: var(--space-16) var(--space-8);
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: var(--space-12);
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.featureCard {
+  background-color: var(--color-bg-surface);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.featureCard h3 {
+  margin-bottom: var(--space-2);
+  color: var(--color-text-primary);
+}
+
+.featureCard p {
+  color: var(--color-text-secondary);
+}
+
+.metrics {
+  display: flex;
+  justify-content: space-around;
+  padding: var(--space-12) var(--space-8);
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.metricItem {
+  text-align: center;
+}
+
+.metricNumber {
+  font-size: 48px;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-1);
+}
+
+.footer {
+  background-color: var(--color-bg-surface);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-12) var(--space-8) var(--space-6);
+  margin-top: auto;
+}
+
+.footerContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-8);
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: var(--space-8);
+}
+
+.footerContent h4 {
+  margin-bottom: var(--space-4);
+}
+
+.footerContent a {
+  display: block;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  margin-bottom: var(--space-2);
+}
+
+.footerContent a:hover {
+  color: var(--color-primary);
+}
+
+.footerBottom {
+  text-align: center;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-tertiary);
+  font-size: 14px;
+}

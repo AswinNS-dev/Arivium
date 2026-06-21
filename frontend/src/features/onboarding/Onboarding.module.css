@@ -1,0 +1,154 @@
+.onboardingContainer {
+  min-height: calc(100vh - 80px);
+  background-color: var(--color-bg-base);
+  padding: var(--space-8);
+  display: flex;
+  justify-content: center;
+}
+
+.wizardCard {
+  width: 100%;
+  max-width: 900px;
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+}
+
+.progressHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-6) var(--space-8);
+  border-bottom: 1px solid var(--color-border);
+  overflow-x: auto;
+  padding-bottom: var(--space-12); /* Room for labels */
+}
+
+.stepIndicator {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex: 1;
+}
+
+.stepIndicator:last-child {
+  flex: 0;
+}
+
+.stepCircle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--color-bg-surface-hover);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+  font-size: 14px;
+  z-index: 2;
+  border: 2px solid var(--color-bg-surface);
+  flex-shrink: 0;
+}
+
+.stepCircle.active {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.stepLabel {
+  position: absolute;
+  top: 40px;
+  left: 16px;
+  transform: translateX(-50%);
+  font-size: 12px;
+  white-space: nowrap;
+  color: var(--color-text-secondary);
+}
+
+.stepLine {
+  flex: 1;
+  height: 2px;
+  background-color: var(--color-border);
+  margin: 0 var(--space-2);
+  min-width: 20px;
+}
+
+.stepLine.activeLine {
+  background-color: var(--color-primary);
+}
+
+.stepContent {
+  padding: var(--space-8) var(--space-12);
+  flex: 1;
+  min-height: 400px;
+}
+
+.stepContent h2 {
+  font-size: 24px;
+  margin-bottom: var(--space-2);
+  color: var(--color-text-primary);
+}
+
+.stepContent > p {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-8);
+}
+
+.wizardFooter {
+  padding: var(--space-6) var(--space-8);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+}
+
+.selectableCard {
+  padding: var(--space-8);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: var(--font-weight-medium);
+}
+
+.selectableCard:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.uploadBox {
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-16);
+  text-align: center;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.uploadBox:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+}
+
+
+.fileInput {
+  display: none;
+}
+
+.uploadBoxActive {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}

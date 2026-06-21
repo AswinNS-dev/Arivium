@@ -1,0 +1,88 @@
+export interface RoadmapStepTemplate {
+  week: string;
+  focus_skills: string[];
+  objectives: string[];
+}
+
+export const ROLE_ROADMAP_TEMPLATES: Record<string, RoadmapStepTemplate[]> = {
+  'Frontend Developer': [
+    { week: 'Week 1-2', focus_skills: ['HTML', 'CSS'], objectives: ['Build semantic layouts', 'Create responsive pages'] },
+    { week: 'Week 3-4', focus_skills: ['JavaScript'], objectives: ['Master DOM and async JavaScript'] },
+    { week: 'Week 5-6', focus_skills: ['React'], objectives: ['Build component-driven interfaces'] },
+    { week: 'Week 7-8', focus_skills: ['TypeScript'], objectives: ['Add type safety to frontend apps'] },
+    { week: 'Week 9-10', focus_skills: ['Next.js', 'Redux'], objectives: ['Build routed and stateful applications'] },
+    { week: 'Week 11-12', focus_skills: ['REST APIs', 'Tailwind CSS', 'Deployment'], objectives: ['Integrate APIs and deploy polished apps'] },
+  ],
+  'UI/UX Designer': [
+    { week: 'Week 1-2', focus_skills: ['Figma', 'Wireframing'], objectives: ['Create low-fidelity product flows'] },
+    { week: 'Week 3-4', focus_skills: ['Prototyping'], objectives: ['Build clickable interaction prototypes'] },
+    { week: 'Week 5-6', focus_skills: ['User Research'], objectives: ['Run interviews and synthesize insights'] },
+    { week: 'Week 7-8', focus_skills: ['Accessibility'], objectives: ['Design inclusive interfaces'] },
+    { week: 'Week 9-10', focus_skills: ['Design Systems'], objectives: ['Create reusable UI foundations'] },
+    { week: 'Week 11-12', focus_skills: ['Usability Testing'], objectives: ['Validate designs with users'] },
+  ],
+  'Backend Developer': [
+    { week: 'Week 1-2', focus_skills: ['Node.js', 'Express'], objectives: ['Build API services'] },
+    { week: 'Week 3-4', focus_skills: ['REST API'], objectives: ['Design clean API contracts'] },
+    { week: 'Week 5-6', focus_skills: ['SQL', 'MongoDB'], objectives: ['Persist relational and document data'] },
+    { week: 'Week 7-8', focus_skills: ['Authentication'], objectives: ['Secure user flows'] },
+    { week: 'Week 9-10', focus_skills: ['Redis'], objectives: ['Add caching and queues'] },
+    { week: 'Week 11-12', focus_skills: ['Docker'], objectives: ['Containerize backend services'] },
+  ],
+  'Full Stack Developer': [
+    { week: 'Week 1-2', focus_skills: ['HTML', 'CSS', 'JavaScript'], objectives: ['Build responsive UI foundations'] },
+    { week: 'Week 3-4', focus_skills: ['React', 'TypeScript'], objectives: ['Build typed frontend screens'] },
+    { week: 'Week 5-6', focus_skills: ['Node.js', 'Authentication'], objectives: ['Build secure backend APIs'] },
+    { week: 'Week 7-8', focus_skills: ['MongoDB', 'SQL'], objectives: ['Model and query application data'] },
+    { week: 'Week 9-10', focus_skills: ['Docker'], objectives: ['Containerize the stack'] },
+    { week: 'Week 11-12', focus_skills: ['Deployment'], objectives: ['Deploy a production-ready app'] },
+  ],
+  'Data Analyst': [
+    { week: 'Week 1-2', focus_skills: ['Excel'], objectives: ['Clean and summarize datasets'] },
+    { week: 'Week 3-4', focus_skills: ['SQL'], objectives: ['Query business data'] },
+    { week: 'Week 5-6', focus_skills: ['Statistics'], objectives: ['Analyze trends and distributions'] },
+    { week: 'Week 7-8', focus_skills: ['Power BI'], objectives: ['Build executive dashboards'] },
+    { week: 'Week 9-10', focus_skills: ['Tableau'], objectives: ['Create interactive reports'] },
+    { week: 'Week 11-12', focus_skills: ['Python', 'Data Visualization'], objectives: ['Automate analysis and storytelling'] },
+  ],
+  'Data Scientist': [
+    { week: 'Week 1-2', focus_skills: ['Python', 'Pandas'], objectives: ['Prepare data pipelines'] },
+    { week: 'Week 3-4', focus_skills: ['Statistics'], objectives: ['Build statistical intuition'] },
+    { week: 'Week 5-6', focus_skills: ['Machine Learning'], objectives: ['Train supervised models'] },
+    { week: 'Week 7-8', focus_skills: ['TensorFlow'], objectives: ['Build neural models'] },
+    { week: 'Week 9-10', focus_skills: ['Spark'], objectives: ['Scale data processing'] },
+    { week: 'Week 11-12', focus_skills: ['Model Evaluation'], objectives: ['Validate and communicate results'] },
+  ],
+  'AI Engineer': [
+    { week: 'Week 1-2', focus_skills: ['Machine Learning'], objectives: ['Build ML foundations'] },
+    { week: 'Week 3-4', focus_skills: ['TensorFlow', 'PyTorch'], objectives: ['Train deep learning models'] },
+    { week: 'Week 5-6', focus_skills: ['NLP'], objectives: ['Process and embed text'] },
+    { week: 'Week 7-8', focus_skills: ['RAG', 'Vector Databases'], objectives: ['Build retrieval augmented systems'] },
+    { week: 'Week 9-10', focus_skills: ['Docker'], objectives: ['Package AI services'] },
+    { week: 'Week 11-12', focus_skills: ['AWS'], objectives: ['Deploy AI APIs'] },
+  ],
+  'DevOps Engineer': [
+    { week: 'Week 1-2', focus_skills: ['Linux'], objectives: ['Administer servers and shells'] },
+    { week: 'Week 3-4', focus_skills: ['Docker'], objectives: ['Containerize services'] },
+    { week: 'Week 5-6', focus_skills: ['Kubernetes'], objectives: ['Operate clusters'] },
+    { week: 'Week 7-8', focus_skills: ['CI/CD'], objectives: ['Automate delivery pipelines'] },
+    { week: 'Week 9-10', focus_skills: ['Terraform', 'AWS'], objectives: ['Provision cloud infrastructure'] },
+    { week: 'Week 11-12', focus_skills: ['Monitoring'], objectives: ['Track reliability and incidents'] },
+  ],
+  'Cybersecurity Engineer': [
+    { week: 'Week 1-2', focus_skills: ['Networking'], objectives: ['Understand network attack surfaces'] },
+    { week: 'Week 3-4', focus_skills: ['OWASP'], objectives: ['Secure web applications'] },
+    { week: 'Week 5-6', focus_skills: ['SIEM'], objectives: ['Monitor and correlate events'] },
+    { week: 'Week 7-8', focus_skills: ['Threat Analysis'], objectives: ['Analyze adversary behavior'] },
+    { week: 'Week 9-10', focus_skills: ['Penetration Testing'], objectives: ['Validate vulnerabilities ethically'] },
+    { week: 'Week 11-12', focus_skills: ['Security Auditing'], objectives: ['Document controls and risk'] },
+  ],
+  'Cloud Engineer': [
+    { week: 'Week 1-2', focus_skills: ['Linux', 'Networking'], objectives: ['Build cloud fundamentals'] },
+    { week: 'Week 3-4', focus_skills: ['AWS'], objectives: ['Deploy core AWS services'] },
+    { week: 'Week 5-6', focus_skills: ['Azure', 'GCP'], objectives: ['Compare cloud platforms'] },
+    { week: 'Week 7-8', focus_skills: ['Terraform'], objectives: ['Automate infrastructure'] },
+    { week: 'Week 9-10', focus_skills: ['Docker'], objectives: ['Package workloads'] },
+    { week: 'Week 11-12', focus_skills: ['Kubernetes'], objectives: ['Run cloud-native apps'] },
+  ],
+};
