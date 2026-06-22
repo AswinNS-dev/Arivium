@@ -6,5 +6,13 @@
     "password": "123456",
     "createdAt": "2026-06-21T15:37:14.921Z",
     "updatedAt": "2026-06-21T15:37:14.921Z"
+  },
+  "aswin@gmail.com": {
+    "id": "aswin-gmail.com",
+    "name": "aswin",
+    "email": "aswin@gmail.com",
+    "password": "123456789",
+    "createdAt": "2026-06-22T06:54:34.285Z",
+    "updatedAt": "2026-06-22T06:54:34.285Z"
   }
 }

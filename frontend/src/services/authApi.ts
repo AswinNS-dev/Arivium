@@ -66,6 +66,15 @@ export async function login(email: string, password: string) {
   return data.user;
 }
 
+export function getGoogleOAuthUrl() {
+  const currentUrl = window.location.origin;
+  return `${apiBaseUrl}/api/v1/auth/google?redirectTo=${encodeURIComponent(currentUrl + '/auth/callback')}`;
+}
+
+export function setAuthSession(token: string, user: AuthUser) {
+  saveSession(token, user);
+}
+
 export async function me() {
   const data = await request<{ user: AuthUser }>('/auth/me');
   saveSession(getStoredToken() || '', data.user);

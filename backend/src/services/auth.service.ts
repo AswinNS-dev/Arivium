@@ -1,87 +1,110 @@
-import path from 'path';
-import fs from 'fs';
-
-export interface AuthUser {
-  id: string;
-  name: string;
-  email: string;
-  password: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface UserStore {
-  [email: string]: AuthUser;
-}
+import { supabase, supabaseAdmin } from '../config/supabase';
 
 class AuthService {
-  private usersFile = path.join(__dirname, '../../data/users.json');
-  private sessions: Record<string, string> = {};
+  /**
+   * Generate Google OAuth sign-in URL.
+   * The frontend should redirect the user to this URL.
+   */
+  async signInWithGoogle(redirectTo: string) {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo,
+      },
+    });
 
-  private loadUsers(): UserStore {
-    try {
-      if (!fs.existsSync(this.usersFile)) {
-        this.saveUsers({});
-      }
-      const raw = fs.readFileSync(this.usersFile, 'utf8');
-      return JSON.parse(raw) as UserStore;
-    } catch {
-      return {};
-    }
+    if (error) throw new Error(error.message);
+    return data;
   }
 
-  private saveUsers(users: UserStore) {
-    const directory = path.dirname(this.usersFile);
-    if (!fs.existsSync(directory)) {
-      fs.mkdirSync(directory, { recursive: true });
-    }
-    fs.writeFileSync(this.usersFile, JSON.stringify(users, null, 2), 'utf8');
+  /**
+   * Exchange an OAuth authorization code for a Supabase session.
+   */
+  async handleAuthCallback(code: string) {
+    const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+    if (error) throw new Error(error.message);
+    return data;
   }
 
-  register(name: string, email: string, password: string) {
+  /**
+   * Register a new user with email and password (fallback to non-Google auth).
+   * Also creates a profile entry.
+   */
+  async register(name: string, email: string, password: string) {
     const normalizedEmail = email.trim().toLowerCase();
-    const users = this.loadUsers();
-    if (users[normalizedEmail]) {
-      throw new Error('User already exists');
-    }
-    const user: AuthUser = {
-      id: normalizedEmail.replace(/[^a-z0-9._-]+/g, '-'),
-      name: name.trim(),
+
+    const { data, error } = await supabaseAdmin.auth.admin.createUser({
       email: normalizedEmail,
       password,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    };
-    users[normalizedEmail] = user;
-    this.saveUsers(users);
-    return user;
-  }
+      email_confirm: true, // auto-confirm for dev convenience
+      user_metadata: { full_name: name.trim() },
+    });
 
-  login(email: string, password: string) {
-    const normalizedEmail = email.trim().toLowerCase();
-    const users = this.loadUsers();
-    const user = users[normalizedEmail];
-    if (!user || user.password !== password) {
-      throw new Error('Invalid email or password');
+    if (error) throw new Error(error.message);
+
+    // The trigger will auto-create a profile, but let's ensure name is correct
+    if (data.user) {
+      await supabaseAdmin
+        .from('profiles')
+        .upsert({
+          id: data.user.id,
+          name: name.trim(),
+          email: normalizedEmail,
+        });
     }
-    return user;
+
+    return data.user;
   }
 
-  createSession(userId: string) {
-    const token = `${userId}-${Math.random().toString(36).slice(2, 12)}`;
-    this.sessions[token] = userId;
-    return token;
+  /**
+   * Sign in with email and password (fallback to non-Google auth).
+   */
+  async login(email: string, password: string) {
+    const normalizedEmail = email.trim().toLowerCase();
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: normalizedEmail,
+      password,
+    });
+
+    if (error) throw new Error(error.message);
+    return data;
   }
 
-  getUserByToken(token: string) {
-    const userId = this.sessions[token];
-    if (!userId) return null;
-    const users = this.loadUsers();
-    return Object.values(users).find((user) => user.id === userId) || null;
+  /**
+   * Get the current user from a Supabase access token.
+   */
+  async getUser(token: string) {
+    const { data, error } = await supabaseAdmin.auth.getUser(token);
+    if (error || !data.user) throw new Error('Invalid or expired token');
+
+    // Fetch profile
+    const { data: profile } = await supabaseAdmin
+      .from('profiles')
+      .select('*')
+      .eq('id', data.user.id)
+      .single();
+
+    return {
+      id: data.user.id,
+      email: data.user.email,
+      name: profile?.name ?? data.user.user_metadata?.full_name ?? '',
+      avatar_url: profile?.avatar_url ?? data.user.user_metadata?.avatar_url ?? '',
+      role: profile?.role ?? 'Student',
+      bio: profile?.bio ?? '',
+      skills: profile?.skills ?? [],
+    };
   }
 
-  logout(token: string) {
-    delete this.sessions[token];
+  /**
+   * Sign out (invalidate session on Supabase side).
+   */
+  async logout(token: string) {
+    // Use admin to revoke the session server-side
+    const { data } = await supabaseAdmin.auth.getUser(token);
+    if (data.user) {
+      await supabaseAdmin.auth.admin.signOut(token);
+    }
   }
 }
 

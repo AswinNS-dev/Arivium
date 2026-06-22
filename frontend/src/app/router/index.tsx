@@ -6,6 +6,7 @@ import { RequireAuth } from '../layouts/RequireAuth';
 import { LandingPage } from '../../pages/LandingPage';
 import { LoginPage } from '../../features/auth/LoginPage';
 import { SignupPage } from '../../features/auth/SignupPage';
+import { AuthCallback } from '../../features/auth/AuthCallback';
 import { OnboardingPage } from '../../features/onboarding/OnboardingPage';
 import { DashboardPage } from '../../features/dashboard/DashboardPage';
 import { RoadmapPage } from '../../features/roadmap/RoadmapPage';
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: 'signup',
         element: <SignupPage />,
+      },
+      {
+        path: 'auth/callback',
+        element: <AuthCallback />,
       },
       {
         path: 'onboarding',
