@@ -8,21 +8,32 @@
 }
 
 .header {
-  background-color: var(--color-bg-surface);
+  background: var(--gradient-primary);
   padding: var(--space-8);
   border-radius: var(--radius-xl);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(255,255,255,0.1) 0%, transparent 60%);
 }
 
 .header h1 {
-  font-size: 28px;
+  font-size: 26px;
   margin-bottom: var(--space-2);
+  color: #fff;
+  font-weight: var(--font-weight-extrabold);
+  letter-spacing: -0.02em;
 }
 
 .header p {
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-6);
+  color: rgba(255,255,255,0.75);
+  margin-bottom: var(--space-5);
+  font-size: 14px;
 }
 
 .progressSummary {
@@ -33,21 +44,23 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: var(--space-2);
-  font-weight: var(--font-weight-medium);
-  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
 }
 
 .progressBar {
-  height: 8px;
-  background-color: var(--color-bg-surface-hover);
-  border-radius: 4px;
+  height: 7px;
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 99px;
   overflow: hidden;
 }
 
 .progressFill {
   height: 100%;
-  background-color: var(--color-success);
+  background: rgba(255,255,255,0.9);
   border-radius: 4px;
+  transition: width 0.5s ease;
 }
 
 .mainLayout {
@@ -113,7 +126,7 @@
 
 .nodeCard.active {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+  box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.12);
 }
 
 .nodeCard.locked {

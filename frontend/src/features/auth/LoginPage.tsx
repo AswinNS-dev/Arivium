@@ -31,6 +31,7 @@ export function LoginPage() {
     <div className={styles.authContainer}>
       <div className={styles.authCard}>
         <div className={styles.authHeader}>
+          <span className={styles.authLogo}>Arivium</span>
           <h1 className={styles.authTitle}>Welcome back</h1>
           <p className={styles.authSubtitle}>Enter your details to access your account.</p>
         </div>

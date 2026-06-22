@@ -1,13 +1,21 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import styles from './PublicLayout.module.css';
 
 export function PublicLayout() {
+
   const location = useLocation();
 
   return (
-    <div className="public-layout">
+    <div className={styles.layout}>
       {/* Navbar will go here */}
-      <main>
+      <div className={styles.background}>
+        <div className={styles.orb1} />
+        <div className={styles.orb2} />
+        <div className={styles.orb3} />
+      </div>
+      <main className={styles.main}>
+
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}

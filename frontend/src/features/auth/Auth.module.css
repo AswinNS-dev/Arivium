@@ -1,20 +1,36 @@
 .authContainer {
+  min-height: 100vh;
   display: flex;
-  min-height: calc(100vh - 80px);
   align-items: center;
   justify-content: center;
   padding: var(--space-8);
-  background-color: var(--color-bg-base);
+  background: var(--color-bg-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.authContainer::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(var(--color-primary-rgb), 0.12) 0%, transparent 65%);
+  pointer-events: none;
 }
 
 .authCard {
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   background-color: var(--color-bg-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-8);
-  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-10);
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  z-index: 1;
 }
 
 .authHeader {
@@ -22,10 +38,24 @@
   margin-bottom: var(--space-8);
 }
 
+.authLogo {
+  font-size: 26px;
+  font-weight: var(--font-weight-extrabold);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-4);
+  display: block;
+}
+
 .authTitle {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
   margin-bottom: var(--space-2);
+  letter-spacing: -0.02em;
 }
 
 .authSubtitle {
@@ -42,25 +72,17 @@
 .divider {
   display: flex;
   align-items: center;
-  text-align: center;
-  margin: var(--space-6) 0;
+  gap: var(--space-3);
+  margin: var(--space-2) 0;
   color: var(--color-text-tertiary);
-  font-size: 14px;
+  font-size: 12px;
 }
 
-.divider::before,
-.divider::after {
+.divider::before, .divider::after {
   content: '';
   flex: 1;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.divider:not(:empty)::before {
-  margin-right: .25em;
-}
-
-.divider:not(:empty)::after {
-  margin-left: .25em;
+  height: 1px;
+  background: var(--color-border);
 }
 
 .authFooter {
@@ -73,42 +95,39 @@
 .authFooter a {
   color: var(--color-primary);
   text-decoration: none;
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-semibold);
 }
 
-.authFooter a:hover {
-  text-decoration: underline;
-}
+.authFooter a:hover { text-decoration: underline; }
 
 .authError {
   color: var(--color-error);
-  margin: var(--space-2) 0;
-  font-size: 14px;
+  font-size: 13px;
+  background: var(--color-error-light);
+  border: 1px solid rgba(239,68,68,0.2);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
 }
 
 .textLinkRight {
   font-size: 12px;
   color: var(--color-primary);
   text-decoration: none;
+  font-weight: var(--font-weight-medium);
 }
+.textLinkRight:hover { text-decoration: underline; }
 
-.textLinkRight:hover {
-  text-decoration: underline;
-}
+.actionTextRight { text-align: right; margin-top: -var(--space-2); }
 
-.actionTextRight {
-  text-align: right;
-  margin-top: -8px;
-}
-
-.fullWidthButton {
-  width: 100%;
-}
+.fullWidthButton { width: 100%; }
 
 .iconButton {
   background: none;
   border: none;
   cursor: pointer;
-  color: inherit;
+  color: var(--color-text-tertiary);
   display: flex;
+  padding: 0;
+  transition: color 0.15s;
 }
+.iconButton:hover { color: var(--color-text-primary); }

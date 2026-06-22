@@ -73,17 +73,17 @@ export function DashboardLayout() {
 
       <div className={styles.mainContent}>
         <header className={styles.topbar}>
-          <div className={styles.searchBar}>
+          <div className={styles.topbarLeft}>
             <button
-              className={`${styles.actionBtn} ${styles.sidebarToggle}`}
+              className={styles.sidebarToggle}
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
               aria-label="Toggle sidebar"
             >
-              <Menu size={20} />
+              <Menu size={18} />
             </button>
             <Input
               placeholder="Search anything..."
-              leftIcon={<Search size={16} />}
+              leftIcon={<Search size={15} />}
               className={styles.searchInput}
             />
           </div>

@@ -32,6 +32,7 @@ export function SignupPage() {
     <div className={styles.authContainer}>
       <div className={styles.authCard}>
         <div className={styles.authHeader}>
+          <span className={styles.authLogo}>Arivium</span>
           <h1 className={styles.authTitle}>Create an account</h1>
           <p className={styles.authSubtitle}>Start your journey to becoming job-ready.</p>
         </div>

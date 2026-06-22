@@ -31,7 +31,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={clsx(
-          styles.button,
+          styles.btn,
           styles[variant],
           styles[size],
           {
@@ -42,10 +42,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled || isLoading}
         {...props}
       >
-        {isLoading && <Loader2 className={clsx(styles.icon, styles.spinner)} size={16} />}
-        {!isLoading && leftIcon && <span className={styles.icon}>{leftIcon}</span>}
-        <span className={styles.content}>{children}</span>
-        {!isLoading && rightIcon && <span className={styles.icon}>{rightIcon}</span>}
+        {isLoading && <Loader2 size={16} className={styles.spinner} />}
+        {!isLoading && leftIcon && <span>{leftIcon}</span>}
+        <span>{children}</span>
+        {!isLoading && rightIcon && <span>{rightIcon}</span>}
       </button>
     );
   }

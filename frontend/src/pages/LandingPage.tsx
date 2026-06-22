@@ -3,123 +3,208 @@ import { motion } from 'framer-motion';
 import { Button } from '../components';
 import styles from './LandingPage.module.css';
 
+const features = [
+  { icon: '🎯', title: 'Personalized Roadmaps', desc: 'AI generates a step-by-step career path from your skills and target role — not a generic template.' },
+  { icon: '🧠', title: 'AI-Powered Assessments', desc: 'Fresh questions every attempt, generated from your specific gaps. No memorization possible.' },
+  { icon: '📊', title: 'Gap Analysis Reports', desc: 'Know exactly which skills are holding you back with real-time readiness scoring.' },
+  { icon: '🤝', title: 'Peer Community', desc: 'Connect with students in your domain, share resources, and grow together.' },
+  { icon: '⚡', title: 'Weekly Challenges', desc: 'Structured challenges aligned to your career gaps keep you consistent and motivated.' },
+  { icon: '🏆', title: 'Verified Certificates', desc: 'A shareable, verifiable certificate unlocks when your readiness hits 85%.' },
+];
+
+const steps = [
+  { title: 'Build your profile', desc: 'No resume required. Answer a few questions about your domain, role, and skills.' },
+  { title: 'Get your AI roadmap', desc: 'Groq instantly generates a phased roadmap tailored to your exact target role.' },
+  { title: 'Practice & get assessed', desc: 'Work through topics, take LLM-generated assessments, and track your gap score.' },
+  { title: 'Earn your certificate', desc: 'Hit 85% readiness and get a shareable, verified Job Readiness Certificate.' },
+];
+
+const fadeUp = { hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0 } };
+const stagger = { show: { transition: { staggerChildren: 0.1 } } };
+
 export function LandingPage() {
   return (
     <div className={styles.container}>
-      {/* Navbar placeholder */}
+      {/* Navbar */}
       <nav className={styles.nav}>
         <div className={styles.logo}>Arivium</div>
         <div className={styles.navLinks}>
           <Link to="/login"><Button variant="ghost">Login</Button></Link>
-          <Link to="/signup"><Button variant="primary">Sign Up</Button></Link>
+          <Link to="/signup"><Button variant="primary">Get Started</Button></Link>
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* Hero */}
       <section className={styles.hero}>
-        <motion.div 
+        <div className={styles.heroBg}>
+          <div className={styles.orb1} />
+          <div className={styles.orb2} />
+          <div className={styles.orb3} />
+        </div>
+
+        <motion.div
           className={styles.heroContent}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          variants={stagger}
+          initial="hidden"
+          animate="show"
         >
-          <h1 className={styles.heroTitle}>
-            From Student to <span className={styles.highlight}>Job-Ready</span>
-          </h1>
-          <p className={styles.heroSubtitle}>
-            Arivium is the AI-powered Career Readiness Platform that bridges the gap between academics and industry.
-          </p>
-          <div className={styles.ctaGroup}>
-            <Link to="/signup"><Button size="lg" variant="primary">Get Started for Free</Button></Link>
-            <Link to="/login"><Button size="lg" variant="outline">View Dashboard</Button></Link>
-          </div>
+          <motion.div variants={fadeUp} className={styles.heroBadge}>
+            <span className={styles.heroBadgeDot} />
+            AI-Powered · Free to Start · No Resume Required
+          </motion.div>
+          <motion.h1 variants={fadeUp} className={styles.heroTitle}>
+            From Student to<br />
+            <span className={styles.highlight}>Job-Ready.</span>
+          </motion.h1>
+          <motion.p variants={fadeUp} className={styles.heroSubtitle}>
+            Arivium maps your skills, identifies your gaps, and builds a personalized roadmap to get you hired — not just to finish a course.
+          </motion.p>
+          <motion.div variants={fadeUp} className={styles.ctaGroup}>
+            <Link to="/signup">
+              <Button size="lg" variant="primary">Start for Free →</Button>
+            </Link>
+            <Link to="/login">
+              <Button size="lg" variant="outline">View Dashboard</Button>
+            </Link>
+          </motion.div>
         </motion.div>
-        
-        <motion.div 
+
+        {/* Dashboard preview */}
+        <motion.div
           className={styles.dashboardPreview}
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
         >
+          <div className={styles.previewGlow} />
           <div className={styles.previewWindow}>
-            {/* Fake dashboard UI representation */}
-            <div className={styles.previewHeader}>
-              <div className={styles.dots} />
+            <div className={styles.previewBar}>
+              <div className={`${styles.dot} ${styles.dotRed}`} />
+              <div className={`${styles.dot} ${styles.dotYellow}`} />
+              <div className={`${styles.dot} ${styles.dotGreen}`} />
+              <div className={styles.urlBar} />
             </div>
-            <div className={styles.previewBody}>
-              <div className={styles.skeletonBlock} style={{ width: '30%', height: '100px' }} />
-              <div className={styles.skeletonBlock} style={{ width: '60%', height: '100px' }} />
-              <div className={styles.skeletonBlock} style={{ width: '100%', height: '200px' }} />
+            <div className={styles.previewContent}>
+              <div className={styles.previewSidebar}>
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className={styles.previewNav} style={{ animationDelay: `${i * 0.15}s` }} />
+                ))}
+              </div>
+              <div className={styles.previewMain}>
+                <div className={styles.previewCard} />
+                <div className={styles.previewCard} />
+                <div className={styles.previewCard} />
+              </div>
             </div>
           </div>
         </motion.div>
       </section>
 
-      {/* Features Section */}
-      <section className={styles.features}>
-        <h2 className={styles.sectionTitle}>Built for the Modern Learner</h2>
-        <div className={styles.featureGrid}>
-          {features.map((feature, idx) => (
-            <motion.div 
-              key={idx} 
-              className={styles.featureCard}
-              whileHover={{ y: -5 }}
-              transition={{ type: 'spring', stiffness: 300 }}
+      {/* Metrics */}
+      <section className={styles.socialProof}>
+        <div className={styles.socialProofText}>Trusted by students worldwide</div>
+        <div className={styles.metrics}>
+          {[['10k+', 'Students Placed'], ['95%', 'Success Rate'], ['500+', 'Hiring Partners'], ['85%', 'Avg. Readiness Gain']].map(([val, label]) => (
+            <motion.div
+              key={label}
+              className={styles.metricPill}
+              whileHover={{ y: -2 }}
             >
-              <h3>{feature.title}</h3>
-              <p>{feature.desc}</p>
+              <div className={styles.metricValue}>{val}</div>
+              <div className={styles.metricLabel}>{label}</div>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* Success Metrics */}
-      <section className={styles.metrics}>
-        <div className={styles.metricItem}>
-          <h3 className={styles.metricNumber}>10k+</h3>
-          <p>Students Placed</p>
+      {/* Features */}
+      <section className={styles.features}>
+        <div>
+          <span className={styles.sectionLabel}>Platform Features</span>
+          <h2 className={styles.sectionTitle}>Everything to get you hired</h2>
+          <p className={styles.sectionSubtitle}>One platform that replaces scattered tools with a single, intelligent career engine.</p>
         </div>
-        <div className={styles.metricItem}>
-          <h3 className={styles.metricNumber}>95%</h3>
-          <p>Success Rate</p>
+        <motion.div
+          className={styles.featureGrid}
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          {features.map((f) => (
+            <motion.div key={f.title} variants={fadeUp} className={styles.featureCard}>
+              <div className={styles.featureIcon}>{f.icon}</div>
+              <h3>{f.title}</h3>
+              <p>{f.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </section>
+
+      {/* How it works */}
+      <section className={styles.howItWorks}>
+        <div className={styles.stepsWrapper}>
+          <span className={styles.sectionLabel}>How it works</span>
+          <h2 className={styles.sectionTitle}>From signup to job-ready in 4 steps</h2>
+          <div className={styles.steps}>
+            {steps.map((s, i) => (
+              <motion.div
+                key={s.title}
+                className={styles.step}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <div className={styles.stepNum}>{i + 1}</div>
+                <div className={styles.stepBody}>
+                  <h3>{s.title}</h3>
+                  <p>{s.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
-        <div className={styles.metricItem}>
-          <h3 className={styles.metricNumber}>500+</h3>
-          <p>Hiring Partners</p>
+      </section>
+
+      {/* CTA Banner */}
+      <section className={styles.ctaSection}>
+        <div className={styles.ctaContent}>
+          <h2>Ready to prove you're job-ready?</h2>
+          <p>Join thousands of students who turned their skill gaps into career wins.</p>
+          <Link to="/signup" className={styles.ctaButtonWhite}>
+            Get Started Free →
+          </Link>
         </div>
       </section>
 
       {/* Footer */}
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
-          <div>
-            <h4>Arivium</h4>
-            <p>Empowering students globally.</p>
+          <div className={styles.footerBrand}>
+            <div className={styles.logo}>Arivium</div>
+            <p>AI-powered career readiness for students who are serious about getting hired.</p>
           </div>
           <div>
             <h4>Platform</h4>
-            <Link to="/features">Features</Link>
-            <Link to="/pricing">Pricing</Link>
+            <Link to="/signup">Roadmaps</Link>
+            <Link to="/signup">Assessments</Link>
+            <Link to="/signup">Certificates</Link>
           </div>
           <div>
             <h4>Company</h4>
-            <Link to="/about">About Us</Link>
-            <Link to="/contact">Contact</Link>
+            <Link to="/">About</Link>
+            <Link to="/">Blog</Link>
+            <Link to="/">Contact</Link>
+          </div>
+          <div>
+            <h4>Legal</h4>
+            <Link to="/">Privacy</Link>
+            <Link to="/">Terms</Link>
           </div>
         </div>
-        <div className={styles.footerBottom}>
-          © 2026 Arivium. All rights reserved.
-        </div>
+        <div className={styles.footerBottom}>© 2026 Arivium. All rights reserved.</div>
       </footer>
     </div>
   );
 }
-
-const features = [
-  { title: 'Personalized Roadmaps', desc: 'AI-driven paths tailored to your career goals.' },
-  { title: 'AI Assessments', desc: 'Test your knowledge with real-world, dynamic scenarios.' },
-  { title: 'Gap Reports', desc: 'Actionable insights to fill your skill gaps effectively.' },
-  { title: 'Community', desc: 'Connect with peers and mentors in a professional network.' },
-  { title: 'Challenges', desc: 'Participate in coding challenges and hackathons.' },
-  { title: 'Certificates', desc: 'Earn verifiable certificates to boost your resume.' },
-];
